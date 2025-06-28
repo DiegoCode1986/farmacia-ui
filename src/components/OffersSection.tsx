@@ -25,7 +25,9 @@ const OffersSection = () => {
                 COMPRE AGORA
               </Button>
             </div>
-            <div className="absolute right-4 bottom-4 opacity-20">
+            <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
+              {/* Adicione imageUrl aqui quando disponível */}
+              {/* <img src="URL_DA_IMAGEM" alt="Antisséptico" className="w-full h-full object-contain" /> */}
               <span className="text-8xl">🧴</span>
             </div>
           </Card>
@@ -43,7 +45,9 @@ const OffersSection = () => {
                 VER OFERTAS
               </Button>
             </div>
-            <div className="absolute right-4 bottom-4 opacity-20">
+            <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
+              {/* Adicione imageUrl aqui quando disponível */}
+              {/* <img src="URL_DA_IMAGEM" alt="Colírios" className="w-full h-full object-contain" /> */}
               <span className="text-8xl">👁️</span>
             </div>
           </Card>
@@ -53,7 +57,9 @@ const OffersSection = () => {
         <Card className="bg-gradient-to-r from-teal-500 to-green-500 text-white p-6">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
-              <div className="bg-white bg-opacity-20 rounded-full p-3 mr-4">
+              <div className="bg-white bg-opacity-20 rounded-full p-3 mr-4 w-16 h-16 flex items-center justify-center">
+                {/* Adicione imageUrl aqui quando disponível */}
+                {/* <img src="URL_DA_IMAGEM" alt="Entrega" className="w-8 h-8 object-contain" /> */}
                 <span className="text-2xl">🚚</span>
               </div>
               <div>

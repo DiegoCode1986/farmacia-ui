@@ -12,6 +12,7 @@ const products = [
     discount: "38% OFF",
     rating: 4.8,
     image: "🧴",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: true
   },
   {
@@ -22,6 +23,7 @@ const products = [
     discount: "49% OFF",
     rating: 4.9,
     image: "😷",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: false
   },
   {
@@ -32,6 +34,7 @@ const products = [
     discount: "28% OFF",
     rating: 4.7,
     image: "🌡️",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: false
   },
   {
@@ -42,6 +45,7 @@ const products = [
     discount: "28% OFF",
     rating: 4.6,
     image: "💊",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: true
   },
   {
@@ -52,6 +56,7 @@ const products = [
     discount: "31% OFF",
     rating: 4.8,
     image: "🩺",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: false
   },
   {
@@ -62,6 +67,7 @@ const products = [
     discount: "32% OFF",
     rating: 4.5,
     image: "🩹",
+    imageUrl: "", // Adicione URL da imagem aqui
     isNew: false
   }
 ];
@@ -88,7 +94,15 @@ const ProductsSection = () => {
                   {product.discount}
                 </span>
                 <div className="flex justify-center items-center h-32">
-                  <span className="text-6xl">{product.image}</span>
+                  {product.imageUrl ? (
+                    <img 
+                      src={product.imageUrl} 
+                      alt={product.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-6xl">{product.image}</span>
+                  )}
                 </div>
                 <Button 
                   variant="ghost" 

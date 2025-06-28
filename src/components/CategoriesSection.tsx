@@ -10,6 +10,7 @@ const categories = [
     name: "Máscaras Faciais",
     price: "A partir de R$ 2,50",
     image: "💊",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-green-100"
   },
   {
@@ -17,6 +18,7 @@ const categories = [
     name: "Medidor de Pressão",
     price: "A partir de R$ 89,90",
     image: "🩺",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-blue-100"
   },
   {
@@ -24,6 +26,7 @@ const categories = [
     name: "Frasco para Remédios",
     price: "A partir de R$ 15,90",
     image: "💉",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-red-100"
   },
   {
@@ -31,6 +34,7 @@ const categories = [
     name: "Termômetro Digital",
     price: "A partir de R$ 25,90",
     image: "🌡️",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-yellow-100"
   },
   {
@@ -38,6 +42,7 @@ const categories = [
     name: "Curativos",
     price: "A partir de R$ 8,90",
     image: "🩹",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-purple-100"
   },
   {
@@ -45,6 +50,7 @@ const categories = [
     name: "Vitaminas",
     price: "A partir de R$ 35,90",
     image: "💊",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-orange-100"
   },
   {
@@ -52,6 +58,7 @@ const categories = [
     name: "Produtos de Higiene",
     price: "A partir de R$ 12,90",
     image: "🧴",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-pink-100"
   },
   {
@@ -59,6 +66,7 @@ const categories = [
     name: "Equipamentos",
     price: "A partir de R$ 45,90",
     image: "⚕️",
+    imageUrl: "", // Adicione URL da imagem aqui
     color: "bg-indigo-100"
   }
 ];
@@ -107,8 +115,7 @@ const CategoriesSection = () => {
             className="flex overflow-x-auto space-x-4 pb-4"
             style={{ 
               scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              WebkitScrollbar: { display: 'none' }
+              msOverflowStyle: 'none'
             }}
           >
             {categories.map((category) => (
@@ -116,8 +123,16 @@ const CategoriesSection = () => {
                 key={category.id} 
                 className="min-w-[200px] md:min-w-[250px] p-6 hover:shadow-lg transition-shadow cursor-pointer group"
               >
-                <div className={`${category.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <span className="text-2xl">{category.image}</span>
+                <div className={`${category.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform overflow-hidden`}>
+                  {category.imageUrl ? (
+                    <img 
+                      src={category.imageUrl} 
+                      alt={category.name}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  ) : (
+                    <span className="text-2xl">{category.image}</span>
+                  )}
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">{category.name}</h3>
                 <p className="text-teal-600 font-medium text-sm">{category.price}</p>
@@ -149,6 +164,12 @@ const CategoriesSection = () => {
           </Button>
         </div>
       </div>
+
+      <style>{`
+        div::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };

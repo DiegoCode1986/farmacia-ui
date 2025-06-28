@@ -25,7 +25,10 @@ const HeroSection = () => {
                 COMPRE AGORA
               </Button>
             </div>
-            <div className="absolute right-4 top-4 opacity-20">
+            {/* Área para imagem do produto - substitua a URL pela imagem desejada */}
+            <div className="absolute right-4 top-4 w-32 h-32 opacity-20">
+              {/* Adicione imageUrl aqui quando disponível */}
+              {/* <img src="URL_DA_IMAGEM" alt="Álcool em Gel" className="w-full h-full object-contain" /> */}
               <div className="w-32 h-32 bg-white rounded-full"></div>
             </div>
           </Card>
@@ -42,9 +45,14 @@ const HeroSection = () => {
                   VER MAIS
                 </Button>
               </div>
+              {/* Área para imagem do produto */}
+              <div className="absolute right-4 bottom-4 w-16 h-16 opacity-20">
+                {/* <img src="URL_DA_IMAGEM" alt="Vitaminas" className="w-full h-full object-contain" /> */}
+                <span className="text-4xl">💊</span>
+              </div>
             </Card>
 
-            <Card className="bg-gradient-to-r from-teal-400 to-teal-500 text-white p-6">
+            <Card className="bg-gradient-to-r from-teal-400 to-teal-500 text-white p-6 relative overflow-hidden">
               <h3 className="text-lg font-semibold mb-2">
                 Monitor de<br />Pressão
               </h3>
@@ -52,6 +60,11 @@ const HeroSection = () => {
               <Button size="sm" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100">
                 VER MAIS
               </Button>
+              {/* Área para imagem do produto */}
+              <div className="absolute right-4 bottom-4 w-16 h-16 opacity-20">
+                {/* <img src="URL_DA_IMAGEM" alt="Monitor de Pressão" className="w-full h-full object-contain" /> */}
+                <span className="text-4xl">🩺</span>
+              </div>
             </Card>
           </div>
         </div>
