@@ -110,71 +110,69 @@ const ProductsSection = () => {
           <p className="text-gray-600">Os melhores produtos com os melhores preços</p>
         </div>
 
-        <div className="relative">
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {products.map((product) => (
-                <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                  <Card className="overflow-hidden hover:shadow-lg transition-shadow group h-full">
-                    <div className="relative p-6 bg-gray-100">
-                      {product.isNew && (
-                        <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
-                          NOVO
-                        </span>
-                      )}
-                      <span className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
-                        {product.discount}
+        <Carousel className="w-full">
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {products.map((product) => (
+              <CarouselItem key={product.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow group h-full">
+                  <div className="relative p-6 bg-gray-100">
+                    {product.isNew && (
+                      <span className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
+                        NOVO
                       </span>
-                      <div className="flex justify-center items-center h-32">
-                        {product.imageUrl ? (
-                          <img 
-                            src={product.imageUrl} 
-                            alt={product.name}
-                            className="max-w-full max-h-full object-contain rounded-lg"
-                          />
-                        ) : (
-                          <span className="text-6xl">{product.image}</span>
-                        )}
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Heart className="h-4 w-4" />
-                      </Button>
+                    )}
+                    <span className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold z-10">
+                      {product.discount}
+                    </span>
+                    <div className="flex justify-center items-center h-32">
+                      {product.imageUrl ? (
+                        <img 
+                          src={product.imageUrl} 
+                          alt={product.name}
+                          className="max-w-full max-h-full object-contain rounded-lg"
+                        />
+                      ) : (
+                        <span className="text-6xl">{product.image}</span>
+                      )}
                     </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Heart className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-semibold text-gray-800 mb-2 h-12 line-clamp-2">{product.name}</h3>
                     
-                    <div className="p-4 flex flex-col flex-grow">
-                      <h3 className="font-semibold text-gray-800 mb-2 h-12 line-clamp-2">{product.name}</h3>
-                      
-                      <div className="flex items-center mb-2">
-                        <div className="flex text-yellow-400 text-sm">
-                          {'★'.repeat(Math.floor(product.rating))}
-                          {'☆'.repeat(5 - Math.floor(product.rating))}
-                        </div>
-                        <span className="text-gray-500 text-sm ml-1">({product.rating})</span>
+                    <div className="flex items-center mb-2">
+                      <div className="flex text-yellow-400 text-sm">
+                        {'★'.repeat(Math.floor(product.rating))}
+                        {'☆'.repeat(5 - Math.floor(product.rating))}
                       </div>
-
-                      <div className="flex items-center justify-between mb-4">
-                        <div>
-                          <span className="text-2xl font-bold text-teal-600">{product.price}</span>
-                          <span className="text-gray-400 line-through ml-2 text-sm">{product.originalPrice}</span>
-                        </div>
-                      </div>
-
-                      <Button className="w-full bg-teal-600 hover:bg-teal-700 flex items-center justify-center mt-auto">
-                        <ShoppingCart className="h-4 w-4 mr-2" />
-                        Adicionar ao Carrinho
-                      </Button>
+                      <span className="text-gray-500 text-sm ml-1">({product.rating})</span>
                     </div>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
 
-          {/* Custom navigation buttons positioned below */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <span className="text-2xl font-bold text-teal-600">{product.price}</span>
+                        <span className="text-gray-400 line-through ml-2 text-sm">{product.originalPrice}</span>
+                      </div>
+                    </div>
+
+                    <Button className="w-full bg-teal-600 hover:bg-teal-700 flex items-center justify-center mt-auto">
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      Adicionar ao Carrinho
+                    </Button>
+                  </div>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+          {/* Navigation buttons positioned below and within the Carousel context */}
           <div className="flex justify-center mt-6 space-x-2">
             <CarouselPrevious className="relative left-0 top-0 translate-y-0 translate-x-0 h-10 w-10 border-2 hover:bg-gray-50">
               <ChevronLeft className="h-4 w-4" />
@@ -183,7 +181,7 @@ const ProductsSection = () => {
               <ChevronRight className="h-4 w-4" />
             </CarouselNext>
           </div>
-        </div>
+        </Carousel>
 
         <div className="text-center mt-8">
           <Button variant="outline" size="lg" className="hover:bg-teal-50 hover:border-teal-300">
