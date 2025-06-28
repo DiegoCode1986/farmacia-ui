@@ -104,8 +104,12 @@ const CategoriesSection = () => {
         <div className="relative">
           <div 
             ref={scrollRef}
-            className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex overflow-x-auto space-x-4 pb-4"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              WebkitScrollbar: { display: 'none' }
+            }}
           >
             {categories.map((category) => (
               <Card 
@@ -145,12 +149,6 @@ const CategoriesSection = () => {
           </Button>
         </div>
       </div>
-
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };
