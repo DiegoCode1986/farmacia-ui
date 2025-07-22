@@ -1,7 +1,6 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const products = [
   {
@@ -102,12 +102,20 @@ const products = [
 ];
 
 const ProductsSection = () => {
+  const handleProductConsult = (productName: string, price: string) => {
+    openWhatsApp(PHARMACY_WHATSAPP, productName, price);
+  };
+
+  const handleViewAllProducts = () => {
+    openWhatsApp(PHARMACY_WHATSAPP);
+  };
+
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Produtos em Destaque</h2>
-          <p className="text-gray-600">Os melhores produtos com os melhores preços</p>
+          <p className="text-gray-600">Consulte preços e disponibilidade pelo WhatsApp</p>
         </div>
 
         <Carousel className="w-full">
@@ -135,13 +143,6 @@ const ProductsSection = () => {
                         <span className="text-6xl">{product.image}</span>
                       )}
                     </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <Heart className="h-4 w-4" />
-                    </Button>
                   </div>
                   
                   <div className="p-4 flex flex-col flex-grow">
@@ -162,9 +163,12 @@ const ProductsSection = () => {
                       </div>
                     </div>
 
-                    <Button className="w-full bg-teal-600 hover:bg-teal-700 flex items-center justify-center mt-auto">
-                      <ShoppingCart className="h-4 w-4 mr-2" />
-                      Adicionar ao Carrinho
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 flex items-center justify-center mt-auto"
+                      onClick={() => handleProductConsult(product.name, product.price)}
+                    >
+                      <MessageCircle className="h-4 w-4 mr-2" />
+                      Consultar no WhatsApp
                     </Button>
                   </div>
                 </Card>
@@ -184,8 +188,14 @@ const ProductsSection = () => {
         </Carousel>
 
         <div className="text-center mt-8">
-          <Button variant="outline" size="lg" className="hover:bg-teal-50 hover:border-teal-300">
-            Ver Todos os Produtos
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="hover:bg-green-50 hover:border-green-300"
+            onClick={handleViewAllProducts}
+          >
+            <MessageCircle className="h-4 w-4 mr-2" />
+            Consultar Mais Produtos
           </Button>
         </div>
       </div>

@@ -1,11 +1,16 @@
 
-import { Search, ShoppingCart, User, Heart, Menu } from "lucide-react";
+import { Search, Menu, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleWhatsAppClick = () => {
+    openWhatsApp(PHARMACY_WHATSAPP);
+  };
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -13,11 +18,22 @@ const Header = () => {
         {/* Top bar */}
         <div className="hidden md:flex justify-between items-center py-2 text-sm border-b">
           <div className="flex items-center space-x-4">
-            <span className="text-teal-600">📞 (11) 99999-9999</span>
+            <span className="text-teal-600 flex items-center">
+              <Phone className="h-4 w-4 mr-1" />
+              (11) 99999-9999
+            </span>
             <span className="text-gray-600">Segunda - Sábado: 8h às 22h</span>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-gray-600">Entrega grátis acima de R$ 50</span>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleWhatsAppClick}
+              className="text-green-600 hover:text-green-700"
+            >
+              <MessageCircle className="h-4 w-4 mr-1" />
+              Fale Conosco no WhatsApp
+            </Button>
           </div>
         </div>
 
@@ -35,7 +51,7 @@ const Header = () => {
             <div className="relative w-full">
               <Input
                 type="text"
-                placeholder="Buscar produtos, medicamentos..."
+                placeholder="Buscar informações sobre produtos, medicamentos..."
                 className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg"
               />
               <Button 
@@ -47,21 +63,14 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Right side icons */}
+          {/* Right side - WhatsApp button */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="hidden md:flex items-center">
-              <User className="h-5 w-5 mr-1" />
-              <span className="text-sm">Entrar</span>
-            </Button>
-            
-            <Button variant="ghost" size="sm" className="relative">
-              <Heart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
-            </Button>
-            
-            <Button variant="ghost" size="sm" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-teal-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+            <Button 
+              onClick={handleWhatsAppClick}
+              className="hidden md:flex bg-green-600 hover:bg-green-700 text-white"
+            >
+              <MessageCircle className="h-4 w-4 mr-2" />
+              WhatsApp
             </Button>
 
             <Button 
@@ -80,10 +89,10 @@ const Header = () => {
           <div className="flex flex-col md:flex-row md:items-center md:space-x-8 space-y-2 md:space-y-0">
             <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Início</a>
             <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Medicamentos</a>
-            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Beleza</a>
-            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Higiene</a>
-            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Mamãe e Bebê</a>
+            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Produtos</a>
             <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Ofertas</a>
+            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Sobre Nós</a>
+            <a href="#" className="text-gray-700 hover:text-teal-600 font-medium">Contato</a>
           </div>
         </nav>
 
@@ -99,6 +108,13 @@ const Header = () => {
               <Search className="h-4 w-4" />
             </Button>
           </div>
+          <Button 
+            onClick={handleWhatsAppClick}
+            className="w-full mt-2 bg-green-600 hover:bg-green-700 text-white"
+          >
+            <MessageCircle className="h-4 w-4 mr-2" />
+            Fale Conosco no WhatsApp
+          </Button>
         </div>
       </div>
     </header>

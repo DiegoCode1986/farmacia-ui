@@ -1,8 +1,8 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { useRef } from "react";
+import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const categories = [
   {
@@ -84,6 +84,10 @@ const CategoriesSection = () => {
     }
   };
 
+  const handleCategoryConsult = (categoryName: string) => {
+    openWhatsApp(PHARMACY_WHATSAPP, categoryName);
+  };
+
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
@@ -136,8 +140,14 @@ const CategoriesSection = () => {
                 </div>
                 <h3 className="font-semibold text-gray-800 mb-2">{category.name}</h3>
                 <p className="text-teal-600 font-medium text-sm">{category.price}</p>
-                <Button size="sm" variant="outline" className="mt-4 w-full hover:bg-teal-50 hover:border-teal-300">
-                  VER PRODUTOS
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="mt-4 w-full hover:bg-green-50 hover:border-green-300"
+                  onClick={() => handleCategoryConsult(category.name)}
+                >
+                  <MessageCircle className="h-3 w-3 mr-1" />
+                  CONSULTAR
                 </Button>
               </Card>
             ))}

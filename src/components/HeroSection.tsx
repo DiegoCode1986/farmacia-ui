@@ -1,8 +1,22 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { MessageCircle } from "lucide-react";
+import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const HeroSection = () => {
+  const handleMainProductClick = () => {
+    openWhatsApp(PHARMACY_WHATSAPP, "Álcool em Gel Antisséptico", "R$ 9,90");
+  };
+
+  const handleVitaminsClick = () => {
+    openWhatsApp(PHARMACY_WHATSAPP, "Vitaminas e Minerais");
+  };
+
+  const handleMonitorClick = () => {
+    openWhatsApp(PHARMACY_WHATSAPP, "Monitor de Pressão");
+  };
+
   return (
     <section className="bg-gradient-to-r from-teal-500 to-teal-600 py-8">
       <div className="container mx-auto px-4">
@@ -21,8 +35,13 @@ const HeroSection = () => {
               <div className="text-4xl font-bold text-yellow-400 mb-6">
                 R$ 9,90
               </div>
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100">
-                COMPRE AGORA
+              <Button 
+                size="lg" 
+                className="bg-white text-blue-900 hover:bg-gray-100"
+                onClick={handleMainProductClick}
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                CONSULTAR PREÇO
               </Button>
             </div>
             {/* Área para imagem do produto - substitua a URL pela imagem desejada */}
@@ -41,8 +60,14 @@ const HeroSection = () => {
                   Vitaminas e<br />Minerais
                 </h3>
                 <p className="text-orange-100 text-sm mb-3">Até 30% OFF</p>
-                <Button size="sm" variant="secondary" className="bg-white text-orange-600 hover:bg-gray-100">
-                  VER MAIS
+                <Button 
+                  size="sm" 
+                  variant="secondary" 
+                  className="bg-white text-orange-600 hover:bg-gray-100"
+                  onClick={handleVitaminsClick}
+                >
+                  <MessageCircle className="h-3 w-3 mr-1" />
+                  CONSULTAR
                 </Button>
               </div>
               {/* Área para imagem do produto */}
@@ -57,8 +82,14 @@ const HeroSection = () => {
                 Monitor de<br />Pressão
               </h3>
               <p className="text-teal-100 text-sm mb-3">Até 25% OFF</p>
-              <Button size="sm" variant="secondary" className="bg-white text-teal-600 hover:bg-gray-100">
-                VER MAIS
+              <Button 
+                size="sm" 
+                variant="secondary" 
+                className="bg-white text-teal-600 hover:bg-gray-100"
+                onClick={handleMonitorClick}
+              >
+                <MessageCircle className="h-3 w-3 mr-1" />
+                CONSULTAR
               </Button>
               {/* Área para imagem do produto */}
               <div className="absolute right-4 bottom-4 w-16 h-16 opacity-20">

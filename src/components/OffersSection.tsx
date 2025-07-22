@@ -1,14 +1,28 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { MessageCircle, Phone } from "lucide-react";
+import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const OffersSection = () => {
+  const handleAntisepticConsult = () => {
+    openWhatsApp(PHARMACY_WHATSAPP, "Antisséptico para as Mãos");
+  };
+
+  const handleEyeDropsConsult = () => {
+    openWhatsApp(PHARMACY_WHATSAPP, "Colírios e Gotas Oculares");
+  };
+
+  const handleDeliveryInfo = () => {
+    openWhatsApp(PHARMACY_WHATSAPP);
+  };
+
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Ofertas Especiais</h2>
-          <p className="text-gray-600">Não perca essas oportunidades incríveis!</p>
+          <p className="text-gray-600">Consulte disponibilidade e reserve pelo WhatsApp!</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -21,8 +35,13 @@ const OffersSection = () => {
                 Antisséptico para<br />as Mãos
               </h3>
               <p className="text-blue-100 mb-6">Higienização completa e proteção</p>
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100">
-                COMPRE AGORA
+              <Button 
+                size="lg" 
+                className="bg-white text-blue-900 hover:bg-gray-100"
+                onClick={handleAntisepticConsult}
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                CONSULTAR OFERTA
               </Button>
             </div>
             <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
@@ -41,8 +60,13 @@ const OffersSection = () => {
                 Colírios e<br />Gotas Oculares
               </h3>
               <p className="text-yellow-100 mb-6">Cuidado especial para seus olhos</p>
-              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
-                VER OFERTAS
+              <Button 
+                size="lg" 
+                className="bg-white text-orange-600 hover:bg-gray-100"
+                onClick={handleEyeDropsConsult}
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                CONSULTAR DISPONIBILIDADE
               </Button>
             </div>
             <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
@@ -63,12 +87,17 @@ const OffersSection = () => {
                 <span className="text-2xl">🚚</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Entrega 100% Segura</h3>
-                <p className="text-green-100">Sem contato com o entregador</p>
+                <h3 className="text-xl font-bold">Atendimento Personalizado</h3>
+                <p className="text-green-100">Consulte pelo WhatsApp e retire na loja</p>
               </div>
             </div>
-            <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100">
-              SAIBA MAIS
+            <Button 
+              size="lg" 
+              className="bg-white text-teal-600 hover:bg-gray-100"
+              onClick={handleDeliveryInfo}
+            >
+              <Phone className="h-4 w-4 mr-2" />
+              FALE CONOSCO
             </Button>
           </div>
         </Card>
