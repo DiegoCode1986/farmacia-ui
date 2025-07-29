@@ -1,185 +1,98 @@
-import { Card } from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
-import { useRef } from "react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
 
 const categories = [
   {
     id: 1,
-    name: "Máscaras Faciais",
-    price: "A partir de R$ 2,50",
-    image: "💊",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-green-100"
+    name: "Medicamentos",
+    description: "Prescrição médica e venda livre",
+    icon: "💊",
+    color: "bg-blue-100 hover:bg-blue-200",
+    textColor: "text-blue-700"
   },
   {
     id: 2,
-    name: "Medidor de Pressão",
-    price: "A partir de R$ 89,90",
-    image: "🩺",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-blue-100"
+    name: "Beleza",
+    description: "Cosméticos e cuidados pessoais",
+    icon: "💄",
+    color: "bg-pink-100 hover:bg-pink-200",
+    textColor: "text-pink-700"
   },
   {
     id: 3,
-    name: "Frasco para Remédios",
-    price: "A partir de R$ 15,90",
-    image: "💉",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-red-100"
+    name: "Higiene",
+    description: "Produtos de limpeza e cuidado",
+    icon: "🧴",
+    color: "bg-green-100 hover:bg-green-200",
+    textColor: "text-green-700"
   },
   {
     id: 4,
-    name: "Termômetro Digital",
-    price: "A partir de R$ 25,90",
-    image: "🌡️",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-yellow-100"
+    name: "Infantil",
+    description: "Produtos para bebês e crianças",
+    icon: "👶",
+    color: "bg-yellow-100 hover:bg-yellow-200",
+    textColor: "text-yellow-700"
   },
   {
     id: 5,
-    name: "Curativos",
-    price: "A partir de R$ 8,90",
-    image: "🩹",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-purple-100"
+    name: "Nutrição",
+    description: "Vitaminas e suplementos",
+    icon: "🥗",
+    color: "bg-orange-100 hover:bg-orange-200",
+    textColor: "text-orange-700"
   },
   {
     id: 6,
-    name: "Vitaminas",
-    price: "A partir de R$ 35,90",
-    image: "💊",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-orange-100"
-  },
-  {
-    id: 7,
-    name: "Produtos de Higiene",
-    price: "A partir de R$ 12,90",
-    image: "🧴",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-pink-100"
-  },
-  {
-    id: 8,
-    name: "Equipamentos",
-    price: "A partir de R$ 45,90",
-    image: "⚕️",
-    imageUrl: "", // Adicione URL da imagem aqui
-    color: "bg-indigo-100"
+    name: "Primeiros Socorros",
+    description: "Materiais de emergência",
+    icon: "🩹",
+    color: "bg-red-100 hover:bg-red-200",
+    textColor: "text-red-700"
   }
 ];
 
 const CategoriesSection = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 300;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   const handleCategoryConsult = (categoryName: string) => {
-    openWhatsApp(PHARMACY_WHATSAPP, categoryName);
+    openWhatsApp(PHARMACY_WHATSAPP, `Produtos da categoria: ${categoryName}`);
   };
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Categorias Populares</h2>
-          <div className="hidden md:flex space-x-2">
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => scroll('left')}
-              className="p-2"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => scroll('right')}
-              className="p-2"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Categorias</h2>
+          <p className="text-gray-600">Encontre produtos organizados por categoria</p>
         </div>
 
-        <div className="relative">
-          <div 
-            ref={scrollRef}
-            className="flex overflow-x-auto space-x-4 pb-4"
-            style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none'
-            }}
-          >
-            {categories.map((category) => (
-              <Card 
-                key={category.id} 
-                className="min-w-[200px] md:min-w-[250px] p-6 hover:shadow-lg transition-shadow cursor-pointer group"
-              >
-                <div className={`${category.color} w-16 h-16 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform overflow-hidden`}>
-                  {category.imageUrl ? (
-                    <img 
-                      src={category.imageUrl} 
-                      alt={category.name}
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  ) : (
-                    <span className="text-2xl">{category.image}</span>
-                  )}
-                </div>
-                <h3 className="font-semibold text-gray-800 mb-2">{category.name}</h3>
-                <p className="text-teal-600 font-medium text-sm">{category.price}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category) => (
+            <Card 
+              key={category.id} 
+              className={`${category.color} border-0 transition-all duration-300 hover:shadow-lg cursor-pointer group`}
+              onClick={() => handleCategoryConsult(category.name)}
+            >
+              <CardContent className="p-6 text-center">
+                <div className="text-4xl mb-4">{category.icon}</div>
+                <h3 className={`font-bold text-lg mb-2 ${category.textColor}`}>{category.name}</h3>
+                <p className="text-gray-600 text-sm mb-4">{category.description}</p>
                 <Button 
-                  size="sm" 
-                  variant="outline" 
-                  className="mt-4 w-full hover:bg-green-50 hover:border-green-300"
-                  onClick={() => handleCategoryConsult(category.name)}
+                  variant="ghost" 
+                  size="sm"
+                  className={`${category.textColor} hover:bg-white/50 group-hover:bg-white/70`}
                 >
-                  <MessageCircle className="h-3 w-3 mr-1" />
-                  CONSULTAR
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Consultar
+                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile scroll indicators */}
-        <div className="flex justify-center mt-4 md:hidden space-x-2">
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => scroll('left')}
-            className="p-2"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => scroll('right')}
-            className="p-2"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
-
-      <style>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 };
