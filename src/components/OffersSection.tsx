@@ -1,106 +1,71 @@
-
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Phone } from "lucide-react";
-import { openWhatsApp, PHARMACY_WHATSAPP } from "@/utils/whatsapp";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { ShoppingCart, Tag } from "lucide-react";
+
+const offerProducts = [
+  {
+    id: 1,
+    name: "Analgésico 20 Comprimidos",
+    originalPrice: "R$ 25,00",
+    newPrice: "R$ 19,90",
+    imgSrc: "https://via.placeholder.com/250/FFE4E1/000000?text=Analgésico",
+  },
+  {
+    id: 2,
+    name: "Xarope para Tosse 150ml",
+    originalPrice: "R$ 32,50",
+    newPrice: "R$ 27,99",
+    imgSrc: "https://via.placeholder.com/250/E6E6FA/000000?text=Xarope",
+  },
+  {
+    id: 3,
+    name: "Protetor Labial com FPS 30",
+    originalPrice: "R$ 18,00",
+    newPrice: "R$ 14,50",
+    imgSrc: "https://via.placeholder.com/250/FFFACD/000000?text=Protetor+Labial",
+  },
+  {
+    id: 4,
+    name: "Suplemento de Ferro",
+    originalPrice: "R$ 45,00",
+    newPrice: "R$ 38,75",
+    imgSrc: "https://via.placeholder.com/250/F08080/000000?text=Suplemento",
+  },
+];
 
 const OffersSection = () => {
-  const handleAntisepticConsult = () => {
-    openWhatsApp(PHARMACY_WHATSAPP, "Antisséptico para as Mãos");
-  };
-
-  const handleEyeDropsConsult = () => {
-    openWhatsApp(PHARMACY_WHATSAPP, "Colírios e Gotas Oculares");
-  };
-
-  const handleDeliveryInfo = () => {
-    openWhatsApp(PHARMACY_WHATSAPP);
-  };
-
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-red-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Ofertas Especiais</h2>
-          <p className="text-gray-600">Consulte disponibilidade e reserve pelo WhatsApp!</p>
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold text-red-700 tracking-tight">Ofertas da Semana</h2>
+          <p className="text-gray-600 mt-2">Aproveite descontos imperdíveis em produtos selecionados!</p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-gradient-to-r from-blue-900 to-blue-800 text-white p-8 relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                ATÉ 35% OFF
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {offerProducts.map((product) => (
+            <Card key={product.id} className="overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative">
+              <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center">
+                <Tag className="h-3 w-3 mr-1" />
+                OFERTA
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Antisséptico para<br />as Mãos
-              </h3>
-              <p className="text-blue-100 mb-6">Higienização completa e proteção</p>
-              <Button 
-                size="lg" 
-                className="bg-white text-blue-900 hover:bg-gray-100"
-                onClick={handleAntisepticConsult}
-              >
-                <MessageCircle className="h-4 w-4 mr-2" />
-                CONSULTAR OFERTA
-              </Button>
-            </div>
-            <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
-              {/* Adicione imageUrl aqui quando disponível */}
-              {/* <img src="URL_DA_IMAGEM" alt="Antisséptico" className="w-full h-full object-contain" /> */}
-              <span className="text-8xl">🧴</span>
-            </div>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-8 relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="inline-block bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">
-                ATÉ 30% OFF
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Colírios e<br />Gotas Oculares
-              </h3>
-              <p className="text-yellow-100 mb-6">Cuidado especial para seus olhos</p>
-              <Button 
-                size="lg" 
-                className="bg-white text-orange-600 hover:bg-gray-100"
-                onClick={handleEyeDropsConsult}
-              >
-                <MessageCircle className="h-4 w-4 mr-2" />
-                CONSULTAR DISPONIBILIDADE
-              </Button>
-            </div>
-            <div className="absolute right-4 bottom-4 w-20 h-20 opacity-20">
-              {/* Adicione imageUrl aqui quando disponível */}
-              {/* <img src="URL_DA_IMAGEM" alt="Colírios" className="w-full h-full object-contain" /> */}
-              <span className="text-8xl">👁️</span>
-            </div>
-          </Card>
+              <CardContent className="p-0">
+                <img src={product.imgSrc} alt={product.name} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg text-gray-800 truncate">{product.name}</h3>
+                  <div className="my-2">
+                    <span className="text-gray-500 line-through mr-2">{product.originalPrice}</span>
+                    <span className="text-2xl font-bold text-red-600">{product.newPrice}</span>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="p-4 pt-0">
+                <Button className="w-full bg-red-600 hover:bg-red-700">
+                  <ShoppingCart className="mr-2 h-4 w-4" /> Adicionar ao Carrinho
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
-
-        {/* Delivery banner */}
-        <Card className="bg-gradient-to-r from-teal-500 to-green-500 text-white p-6">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center mb-4 md:mb-0">
-              <div className="bg-white bg-opacity-20 rounded-full p-3 mr-4 w-16 h-16 flex items-center justify-center">
-                {/* Adicione imageUrl aqui quando disponível */}
-                {/* <img src="URL_DA_IMAGEM" alt="Entrega" className="w-8 h-8 object-contain" /> */}
-                <span className="text-2xl">🚚</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">Atendimento Personalizado</h3>
-                <p className="text-green-100">Consulte pelo WhatsApp e retire na loja</p>
-              </div>
-            </div>
-            <Button 
-              size="lg" 
-              className="bg-white text-teal-600 hover:bg-gray-100"
-              onClick={handleDeliveryInfo}
-            >
-              <Phone className="h-4 w-4 mr-2" />
-              FALE CONOSCO
-            </Button>
-          </div>
-        </Card>
       </div>
     </section>
   );
